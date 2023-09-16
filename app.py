@@ -93,11 +93,14 @@ plt.ylabel("B1")
 #Pic Saving
 plt.savefig('plot image.png')
 
-image_path = "/home/javad/Documents/ResponseSpectrum/plot image.png"
+image_path = "/home/javad/Response_Spectrum-2800-v4/plot image.png"
 
 #Excel Output
 Data = {"T":Ypoint, "B1":Xpoint, "N":np.array(N, dtype=object)}
 df = pd.DataFrame(Data)
+
+df['B'] = df.B1 * df.N
+
 df.to_excel("output.xlsx", index=False)
 
 writer = pd.ExcelWriter("output.xlsx", engine="xlsxwriter")
@@ -105,7 +108,7 @@ df.to_excel(writer, sheet_name="Sheet1", index=False)
 worksheet = writer.sheets["Sheet1"]
 
 # Insert the image into the Excel file
-worksheet.insert_image("D2", image_path)  # Adjust the cell reference as needed
+worksheet.insert_image("E2", image_path)  # Adjust the cell reference as needed
 
 # Save the Excel file using the Pandas ExcelWriter object
 writer.close()
