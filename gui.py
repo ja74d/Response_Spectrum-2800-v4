@@ -25,7 +25,7 @@ app.title("Input Form")
 # Create and place input fields and labels using a grid layout
 label1 = tk.Label(app, text="Soil Type:")
 label1.grid(row=0, column=0, padx=10, pady=5, sticky="w")
-dropdown_options = ["|", "||", "|||", "||||"]
+dropdown_options = ["I", "II", "III", "IV"]
 combobox1 = ttk.Combobox(app, values=dropdown_options, state="readonly", width=20)
 combobox1.grid(row=0, column=1, padx=10, pady=5)
 
@@ -65,28 +65,50 @@ app.mainloop()
 soil = selected_value1
 A = selected_value2
 
+if selected_value3 == "Low" or selected_value3 == "Average":
 
-if soil == "|||":
-    T0 = 0.15
-    Ts = 0.7
-    S = 1.75
-    S0 = 1.1
-elif soil == "|":
-    T0 = 0.1
-    Ts = 0.4
-    S = 1.5
-    S0 = 1
-elif soil == "||":
-    T0 = 0.1
-    Ts = 0.5
-    S = 1.5
-    S0 = 1
-elif soil == "||||":
-    T0 = 0.15
-    Ts = 1
-    S = 2.25
-    S0 = 1.3
+    if soil == "III":
+        T0 = 0.15
+        Ts = 0.7
+        S = 1.75
+        S0 = 1.1
+    elif soil == "I":
+        T0 = 0.1
+        Ts = 0.4
+        S = 1.5
+        S0 = 1
+    elif soil == "II":
+        T0 = 0.1
+        Ts = 0.5
+        S = 1.5
+        S0 = 1
+    elif soil == "IV":
+        T0 = 0.15
+        Ts = 1
+        S = 2.25
+        S0 = 1.3
 
+else:
+    if soil == "III":
+        T0 = 0.15
+        Ts = 0.7
+        S = 1.75
+        S0 = 1.1
+    elif soil == "I":
+        T0 = 0.1
+        Ts = 0.4
+        S = 1.5
+        S0 = 1
+    elif soil == "II":
+        T0 = 0.1
+        Ts = 0.5
+        S = 1.5
+        S0 = 1
+    elif soil == "IV":
+        T0 = 0.15
+        Ts = 1
+        S = 1.75
+        S0 = 1.1
 
 
 
@@ -154,7 +176,7 @@ plt.savefig('plot image.png')
 image_path = "/home/javad/Response_Spectrum-2800-v4/plot image.png"
 
 #Excel Output
-Data = {"T":Ypoint, "B1":Xpoint, "N":np.array(N, dtype=object)}
+Data = {"T":Xpoint, "B1":Ypoint, "N":np.array(N, dtype=object)}
 df = pd.DataFrame(Data)
 
 df['B'] = df.B1 * df.N
