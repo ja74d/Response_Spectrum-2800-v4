@@ -2,9 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt 
 import pandas as pd
 
-#A=0.25
 
 soil = input(str("your soil name:"))
+
+C1 = float(input("C1:"))
+C2 = float(input("C2:"))
 
 A = 0.25
 
@@ -100,6 +102,7 @@ Data = {"T":Ypoint, "B1":Xpoint, "N":np.array(N, dtype=object)}
 df = pd.DataFrame(Data)
 
 df['B'] = df.B1 * df.N
+df['ABC1C2'] = df.B1*C1*C2*A
 
 df.to_excel("output.xlsx", index=False)
 
@@ -108,7 +111,7 @@ df.to_excel(writer, sheet_name="Sheet1", index=False)
 worksheet = writer.sheets["Sheet1"]
 
 # Insert the image into the Excel file
-worksheet.insert_image("E2", image_path)  # Adjust the cell reference as needed
+worksheet.insert_image("F2", image_path)  # Adjust the cell reference as needed
 
 # Save the Excel file using the Pandas ExcelWriter object
 writer.close()
